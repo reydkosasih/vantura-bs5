@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - Modern Bootstrap 5 Admin Panel</title>
+  <!-- Early Theme Detection Script (Prevents FOUT / Theme Flicker) -->
+  <script>
+    (function () {
+      const storedTheme = localStorage.getItem('admin-template-theme');
+      const resolvedTheme = (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) || (storedTheme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-bs-theme', resolvedTheme);
+    })();
+  </script>
+  <!-- Google Fonts (Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Custom Admin CSS -->
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <!-- Floating Theme Switcher at Top Right -->
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+    <div class="dropdown">
+      <button class="btn btn-outline-secondary btn-icon shadow-sm" id="bd-theme" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false" aria-label="Toggle theme">
+        <i class="bi bi-circle-half theme-icon-active"></i>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+        <li><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"><i
+              class="bi bi-sun-fill me-2 opacity-75"></i> Light</button></li>
+        <li><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"><i
+              class="bi bi-moon-stars-fill me-2 opacity-75"></i> Dark</button></li>
+        <li><button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"><i
+              class="bi bi-circle-half me-2 opacity-75"></i> Auto</button></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="auth-wrapper">
+    <div class="card auth-card">
+      <div class="card-body p-4 p-sm-5">
+        <!-- Brand Header -->
+        <div class="text-center mb-4">
+          <a href="index.html" class="d-inline-flex align-items-center gap-2 text-decoration-none text-body mb-2">
+            <i class="bi bi-cpu-fill text-primary fs-2"></i>
+            <span class="fs-4 fw-bold">Vantura BS5</span>
+          </a>
+          <h5 class="fw-bold mb-1">Welcome back!</h5>
+          <p class="text-secondary small">Please enter your credentials to access the admin dashboard.</p>
+        </div>
+
+        <!-- Social Logins -->
+        <div class="row g-2 mb-4">
+          <div class="col-6">
+            <button
+              class="btn btn-outline-secondary w-100 btn-sm d-flex align-items-center justify-content-center gap-2 py-2">
+              <i class="bi bi-google text-danger"></i> Google
+            </button>
+          </div>
+          <div class="col-6">
+            <button
+              class="btn btn-outline-secondary w-100 btn-sm d-flex align-items-center justify-content-center gap-2 py-2">
+              <i class="bi bi-github"></i> GitHub
+            </button>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center mb-4">
+          <hr class="flex-grow-1 my-0">
+          <span class="px-3 text-secondary small text-uppercase" style="font-size: 0.75rem;">Or email</span>
+          <hr class="flex-grow-1 my-0">
+        </div>
+
+        <!-- Sign In Form -->
+        <form action="index.html" method="GET">
+          <div class="mb-3">
+            <label for="loginEmail" class="form-label small fw-semibold">Email Address</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+              <input type="email" class="form-control" id="loginEmail" placeholder="name@company.io"
+                value="michael.desanta@company.io" required>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <label for="loginPassword" class="form-label small fw-semibold mb-0">Password</label>
+              <a href="auth-forgot.html" class="small text-decoration-none">Forgot Password?</a>
+            </div>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-lock"></i></span>
+              <input type="password" class="form-control" id="loginPassword" placeholder="••••••••••••"
+                value="password123" required>
+              <button class="btn btn-outline-secondary" type="button" id="toggleLoginPass">
+                <i class="bi bi-eye" id="toggleLoginIcon"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" id="rememberMe" checked>
+            <label class="form-check-label small" for="rememberMe">
+              Remember me on this browser
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">
+            Sign In to Dashboard
+          </button>
+        </form>
+
+        <!-- Footer Link -->
+        <div class="text-center mt-4 pt-2">
+          <span class="text-secondary small">Don't have an account yet?</span>
+          <a href="auth-register.html" class="small fw-semibold text-decoration-none ms-1">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS & Admin JS -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/admin.js"></script>
+
+  <script>
+    const toggleBtn = document.getElementById('toggleLoginPass');
+    const passInput = document.getElementById('loginPassword');
+    const passIcon = document.getElementById('toggleLoginIcon');
+
+    if (toggleBtn && passInput && passIcon) {
+      toggleBtn.addEventListener('click', () => {
+        const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passInput.setAttribute('type', type);
+        passIcon.classList.toggle('bi-eye');
+        passIcon.classList.toggle('bi-eye-slash');
+      });
+    }
+  </script>
+</body>
+
+</html>

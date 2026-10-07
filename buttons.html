@@ -1,0 +1,705 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buttons & Dropdowns - Modern Bootstrap 5 Admin Panel</title>
+  <!-- Early Theme Detection Script (Prevents FOUT / Theme Flicker) -->
+  <script>
+    (function () {
+      const storedTheme = localStorage.getItem('admin-template-theme');
+      const resolvedTheme = (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) || (storedTheme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-bs-theme', resolvedTheme);
+    })();
+  </script>
+  <!-- Google Fonts (Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Custom Admin CSS -->
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <div class="app-wrapper" id="appWrapper">
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="app-sidebar" id="appSidebar">
+      <a href="index.html" class="sidebar-brand">
+        <i class="bi bi-cpu-fill text-primary"></i>
+        <span class="sidebar-brand-text">Vantura BS5</span>
+      </a>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-heading">Main</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard">
+              <span class="nav-icon"><i class="bi bi-grid-fill"></i></span>
+              <span class="nav-text">Dashboard</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-heading">UI Components</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="buttons.html" class="nav-link active" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Buttons & Dropdowns">
+              <span class="nav-icon"><i class="bi bi-menu-button-wide-fill"></i></span>
+              <span class="nav-text">Buttons & Dropdowns</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="cards.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Cards">
+              <span class="nav-icon"><i class="bi bi-card-heading"></i></span>
+              <span class="nav-text">Cards</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="forms.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Forms">
+              <span class="nav-icon"><i class="bi bi-input-cursor-text"></i></span>
+              <span class="nav-text">Forms</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="tables.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Tables">
+              <span class="nav-icon"><i class="bi bi-table"></i></span>
+              <span class="nav-text">Tables</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="alerts.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Alerts & Modals">
+              <span class="nav-icon"><i class="bi bi-bell"></i></span>
+              <span class="nav-text">Alerts & Modals</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="charts.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Charts">
+              <span class="nav-icon"><i class="bi bi-pie-chart"></i></span>
+              <span class="nav-text">Charts</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-heading">Account & System</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="profile.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Profile & Settings">
+              <span class="nav-icon"><i class="bi bi-person-gear"></i></span>
+              <span class="nav-text">Profile & Settings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#authSubmenu" role="button" aria-expanded="false"
+              aria-controls="authSubmenu">
+              <span class="nav-icon"><i class="bi bi-shield-lock"></i></span>
+              <span class="nav-text">Authentication</span>
+            </a>
+            <div class="collapse" id="authSubmenu">
+              <ul class="sidebar-submenu">
+                <li><a href="auth-login.html" class="nav-link">Sign In</a></li>
+                <li><a href="auth-register.html" class="nav-link">Sign Up</a></li>
+                <li><a href="auth-forgot.html" class="nav-link">Forgot Password</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="avatar avatar-md bg-primary-subtle text-primary">
+          <i class="bi bi-person-fill"></i>
+          <span class="avatar-status bg-success"></span>
+        </div>
+        <div class="user-info flex-grow-1 overflow-hidden">
+          <div class="fw-semibold text-truncate small">Michael De Santa</div>
+          <div class="text-secondary small text-truncate" style="font-size: 0.75rem;">Lead Designer</div>
+        </div>
+        <a href="auth-login.html" class="btn btn-sm btn-icon" title="Logout" data-bs-toggle="tooltip">
+          <i class="bi bi-box-arrow-right"></i>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="app-main" id="appMain">
+      <header class="app-header">
+        <button class="btn btn-icon me-2" id="sidebarToggle" aria-label="Toggle Sidebar">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+
+        <div class="header-search position-relative me-auto">
+          <i class="bi bi-search header-search-icon"></i>
+          <input type="text" class="form-control" placeholder="Search buttons, dropdowns..." aria-label="Search">
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <!-- Theme Switcher -->
+          <div class="dropdown">
+            <button class="btn btn-icon" id="bd-theme" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-circle-half theme-icon-active fs-5"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+              <li><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"><i
+                    class="bi bi-sun-fill me-2 opacity-75"></i> Light</button></li>
+              <li><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"><i
+                    class="bi bi-moon-stars-fill me-2 opacity-75"></i> Dark</button></li>
+              <li><button type="button" class="dropdown-item d-flex align-items-center active"
+                  data-bs-theme-value="auto"><i class="bi bi-circle-half me-2 opacity-75"></i> Auto (System)</button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- User Menu -->
+          <div class="dropdown ms-1">
+            <button class="btn p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="avatar avatar-md bg-primary-subtle text-primary"><i class="bi bi-person-fill"></i></div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="min-width: 220px;">
+              <li class="px-3 py-2 border-bottom">
+                <div class="fw-semibold">Michael De Santa</div>
+                <div class="text-secondary small">michael.desanta@company.io</div>
+              </li>
+              <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person me-2"></i> Profile</a></li>
+              <li><a class="dropdown-item py-2" href="profile.html#settings"><i class="bi bi-gear me-2"></i>
+                  Settings</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item py-2 text-danger" href="auth-login.html"><i
+                    class="bi bi-box-arrow-right me-2"></i> Sign Out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <main class="app-content">
+        <!-- Page Header -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+          <div>
+            <h4 class="fw-bold mb-1">Buttons, Button Groups & Dropdowns</h4>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb small mb-0">
+                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Buttons & Dropdowns</li>
+              </ol>
+            </nav>
+          </div>
+          <div>
+            <span class="badge bg-primary-subtle text-primary p-2">Interactive Components</span>
+          </div>
+        </div>
+
+        <!-- 1. BASE BUTTONS & STYLES -->
+        <div class="row g-4 mb-4">
+          <!-- Solid Buttons -->
+          <div class="col-12 col-xl-6">
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="fw-semibold">Solid Color Buttons</span>
+              </div>
+              <div class="card-body">
+                <p class="text-secondary small mb-3">Bootstrap standard semantic button classes for actions and form
+                  triggers:</p>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <button type="button" class="btn btn-primary">Primary</button>
+                  <button type="button" class="btn btn-secondary">Secondary</button>
+                  <button type="button" class="btn btn-success">Success</button>
+                  <button type="button" class="btn btn-danger">Danger</button>
+                  <button type="button" class="btn btn-warning">Warning</button>
+                  <button type="button" class="btn btn-info text-white">Info</button>
+                  <button type="button" class="btn btn-light">Light</button>
+                  <button type="button" class="btn btn-dark">Dark</button>
+                  <button type="button" class="btn btn-link">Link</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Outline Buttons -->
+          <div class="col-12 col-xl-6">
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="fw-semibold">Outline Buttons</span>
+              </div>
+              <div class="card-body">
+                <p class="text-secondary small mb-3">Clean bordered style buttons that invert color on hover:</p>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <button type="button" class="btn btn-outline-primary">Primary</button>
+                  <button type="button" class="btn btn-outline-secondary">Secondary</button>
+                  <button type="button" class="btn btn-outline-success">Success</button>
+                  <button type="button" class="btn btn-outline-danger">Danger</button>
+                  <button type="button" class="btn btn-outline-warning">Warning</button>
+                  <button type="button" class="btn btn-outline-info">Info</button>
+                  <button type="button" class="btn btn-outline-dark">Dark</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subtle / Soft Buttons -->
+          <div class="col-12 col-xl-6">
+            <div class="card h-100">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <span class="fw-semibold">Soft / Subtle Buttons</span>
+                <span class="badge bg-primary-subtle text-primary">Modern Style</span>
+              </div>
+              <div class="card-body">
+                <p class="text-secondary small mb-3">Modern soft pastel tones with solid hover transition, ideal for
+                  clean SaaS dashboards:</p>
+                <div class="d-flex flex-wrap gap-2">
+                  <button type="button" class="btn btn-primary-subtle">Primary Soft</button>
+                  <button type="button" class="btn btn-success-subtle">Success Soft</button>
+                  <button type="button" class="btn btn-warning-subtle">Warning Soft</button>
+                  <button type="button" class="btn btn-danger-subtle">Danger Soft</button>
+                  <button type="button" class="btn btn-info-subtle">Info Soft</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rounded Pill Buttons -->
+          <div class="col-12 col-xl-6">
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="fw-semibold">Rounded Pill Buttons</span>
+              </div>
+              <div class="card-body">
+                <p class="text-secondary small mb-3">Add <code>.rounded-pill</code> class for capsule curved buttons:
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                  <button type="button" class="btn btn-primary rounded-pill px-3">Primary Pill</button>
+                  <button type="button" class="btn btn-outline-success rounded-pill px-3">Outline Pill</button>
+                  <button type="button" class="btn btn-danger-subtle rounded-pill px-3">Soft Pill</button>
+                  <button type="button" class="btn btn-dark rounded-pill px-3">Dark Pill</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. SIZES, STATES & LOADING SPINNERS -->
+        <div class="row g-4 mb-4">
+          <!-- Button Sizing -->
+          <div class="col-12 col-xl-6">
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="fw-semibold">Button Sizing</span>
+              </div>
+              <div class="card-body">
+                <p class="text-secondary small mb-3">Available sizes using <code>.btn-lg</code> and
+                  <code>.btn-sm</code>:
+                </p>
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-4">
+                  <button type="button" class="btn btn-primary btn-lg">Large Button</button>
+                  <button type="button" class="btn btn-primary">Default Button</button>
+                  <button type="button" class="btn btn-primary btn-sm">Small Button</button>
+                </div>
+
+                <div class="d-grid gap-2">
+                  <button class="btn btn-outline-secondary" type="button">Full Width Block Button (d-grid)</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button States & Spinners -->
+          <div class="col-12 col-xl-6">
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="fw-semibold">Active, Disabled & Loading Spinners</span>
+              </div>
+              <div class="card-body">
+                <p class="text-secondary small mb-3">Interactive states and loading spinners for asynchronous API
+                  operations:</p>
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                  <button type="button" class="btn btn-primary active">Active State</button>
+                  <button type="button" class="btn btn-secondary" disabled>Disabled</button>
+                </div>
+
+                <div class="d-flex flex-wrap align-items-center gap-2">
+                  <button class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+                    <span role="status">Processing...</span>
+                  </button>
+
+                  <button class="btn btn-success" type="button" disabled>
+                    <span class="spinner-grow spinner-grow-sm me-2" aria-hidden="true"></span>
+                    <span role="status">Syncing...</span>
+                  </button>
+
+                  <button class="btn btn-outline-primary" type="button" id="btnSimulateLoad">
+                    <span id="loadBtnText">Click to Simulate Load</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. ICON BUTTONS & BADGES -->
+        <div class="row g-4 mb-4">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <span class="fw-semibold">Icon Buttons, Social Buttons & Badges</span>
+              </div>
+              <div class="card-body">
+                <div class="row g-4">
+                  <!-- Leading & Trailing Icons -->
+                  <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="small fw-bold text-secondary mb-2">Leading & Trailing Icons</h6>
+                    <div class="d-flex flex-column gap-2">
+                      <button type="button"
+                        class="btn btn-primary d-inline-flex align-items-center justify-content-center gap-2">
+                        <i class="bi bi-cloud-arrow-down-fill"></i> Download Export
+                      </button>
+                      <button type="button"
+                        class="btn btn-outline-secondary d-inline-flex align-items-center justify-content-between">
+                        <span>Continue Setup</span> <i class="bi bi-arrow-right"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Circular Icon Buttons -->
+                  <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="small fw-bold text-secondary mb-2">Circular Icon Buttons (.btn-icon)</h6>
+                    <div class="d-flex flex-wrap gap-2 align-items-center">
+                      <button type="button" class="btn btn-primary btn-icon" title="Edit"><i
+                          class="bi bi-pencil-fill"></i></button>
+                      <button type="button" class="btn btn-success btn-icon" title="Confirm"><i
+                          class="bi bi-check-lg"></i></button>
+                      <button type="button" class="btn btn-danger btn-icon" title="Delete"><i
+                          class="bi bi-trash-fill"></i></button>
+                      <button type="button" class="btn btn-outline-secondary btn-icon" title="Settings"><i
+                          class="bi bi-gear-fill"></i></button>
+                      <button type="button" class="btn btn-info-subtle btn-icon" title="Share"><i
+                          class="bi bi-share-fill"></i></button>
+                    </div>
+                  </div>
+
+                  <!-- Buttons with Badges -->
+                  <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="small fw-bold text-secondary mb-2">Buttons with Counter Badges</h6>
+                    <div class="d-flex flex-column gap-2">
+                      <button type="button"
+                        class="btn btn-outline-primary d-inline-flex align-items-center justify-content-between">
+                        <span>Unread Notifications</span>
+                        <span class="badge bg-danger rounded-pill">12</span>
+                      </button>
+                      <button type="button"
+                        class="btn btn-outline-dark d-inline-flex align-items-center justify-content-between">
+                        <span>Pending Orders</span>
+                        <span class="badge bg-warning text-dark">5</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Social Brand Buttons -->
+                  <div class="col-12 col-md-6 col-lg-3">
+                    <h6 class="small fw-bold text-secondary mb-2">Brand & Social Buttons</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                      <button type="button"
+                        class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-google text-danger"></i> Google
+                      </button>
+                      <button type="button"
+                        class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-github"></i> GitHub
+                      </button>
+                      <button type="button"
+                        class="btn btn-outline-secondary btn-sm d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-twitter-x"></i> X / Twitter
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. BUTTON GROUPS & TOOLBARS -->
+        <div class="row g-4 mb-4">
+          <!-- Horizontal & Sized Groups -->
+          <div class="col-12 col-xl-6">
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="fw-semibold">Horizontal & Sized Button Groups</span>
+              </div>
+              <div class="card-body">
+                <p class="text-secondary small mb-2">Group a series of buttons together on a single line with
+                  <code>.btn-group</code>:
+                </p>
+                <div class="btn-group mb-3" role="group" aria-label="Basic button group">
+                  <button type="button" class="btn btn-outline-secondary">Left</button>
+                  <button type="button" class="btn btn-outline-secondary">Middle</button>
+                  <button type="button" class="btn btn-outline-secondary">Right</button>
+                </div>
+
+                <div class="mb-3">
+                  <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                    <button type="button" class="btn btn-primary">Day</button>
+                    <button type="button" class="btn btn-primary active">Week</button>
+                    <button type="button" class="btn btn-primary">Month</button>
+                    <button type="button" class="btn btn-primary">Year</button>
+                  </div>
+                </div>
+
+                <div>
+                  <h6 class="small fw-bold text-secondary mb-2">Vertical Button Group (.btn-group-vertical)</h6>
+                  <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                    <button type="button" class="btn btn-outline-secondary">Top Option</button>
+                    <button type="button" class="btn btn-outline-secondary">Middle Option</button>
+                    <button type="button" class="btn btn-outline-secondary">Bottom Option</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Toggle Groups & Toolbars -->
+          <div class="col-12 col-xl-6">
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="fw-semibold">Toggle Groups (Checkbox & Radio)</span>
+              </div>
+              <div class="card-body">
+                <h6 class="small fw-bold text-secondary mb-2">Checkbox Toggle (Multi-Select)</h6>
+                <div class="btn-group mb-3" role="group" aria-label="Basic checkbox toggle button group">
+                  <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" checked>
+                  <label class="btn btn-outline-primary" for="btncheck1"><i class="bi bi-bold me-1"></i>Bold</label>
+
+                  <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btncheck2"><i
+                      class="bi bi-type-italic me-1"></i>Italic</label>
+
+                  <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btncheck3"><i
+                      class="bi bi-type-underline me-1"></i>Underline</label>
+                </div>
+
+                <h6 class="small fw-bold text-secondary mb-2">Radio Toggle (Single Choice)</h6>
+                <div class="btn-group mb-4" role="group" aria-label="Basic radio toggle button group">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                  <label class="btn btn-outline-success" for="btnradio1">Monthly Plan</label>
+
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                  <label class="btn btn-outline-success" for="btnradio2">Annual Plan (-20%)</label>
+                </div>
+
+                <h6 class="small fw-bold text-secondary mb-2">Button Toolbar (.btn-toolbar)</h6>
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                  <div class="btn-group me-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">1</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">2</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary active">3</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">4</button>
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text" id="btnGroupAddon">Go</span>
+                    <input type="text" class="form-control" placeholder="Page" style="max-width: 60px;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. DROPDOWNS SHOWCASE -->
+        <div class="row g-4">
+          <!-- Standard & Split Dropdowns -->
+          <div class="col-12 col-xl-6">
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="fw-semibold">Single & Split Dropdown Menus</span>
+              </div>
+              <div class="card-body">
+                <h6 class="small fw-bold text-secondary mb-2">Single Button Dropdown</h6>
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                  <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Primary Dropdown
+                    </button>
+                    <ul class="dropdown-menu shadow-sm">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-folder me-2"></i>View Project</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-pencil me-2"></i>Edit Details</a></li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-trash me-2"></i>Delete</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Export As
+                    </button>
+                    <ul class="dropdown-menu shadow-sm">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-pdf me-2 text-danger"></i>PDF
+                          Document</a></li>
+                      <li><a class="dropdown-item" href="#"><i
+                            class="bi bi-file-earmark-excel me-2 text-success"></i>Excel CSV</a></li>
+                      <li><a class="dropdown-item" href="#"><i
+                            class="bi bi-file-earmark-code me-2 text-primary"></i>JSON Export</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <h6 class="small fw-bold text-secondary mb-2">Split Button Dropdowns</h6>
+                <div class="d-flex flex-wrap gap-2">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-success">Save Changes</button>
+                    <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu shadow-sm">
+                      <li><a class="dropdown-item" href="#">Save & Publish</a></li>
+                      <li><a class="dropdown-item" href="#">Save as Draft</a></li>
+                      <li>
+                        <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="#">Discard</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-danger">Delete Item</button>
+                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                      data-bs-toggle="dropdown" aria-expanded="false">
+                      <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu shadow-sm">
+                      <li><a class="dropdown-item text-danger" href="#">Delete Permanently</a></li>
+                      <li><a class="dropdown-item" href="#">Archive Instead</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Directional Dropdowns & Dropdown Forms -->
+          <div class="col-12 col-xl-6">
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="fw-semibold">Dropup, Dropend, Dropstart & Dropdown Forms</span>
+              </div>
+              <div class="card-body">
+                <h6 class="small fw-bold text-secondary mb-2">Directional Variations</h6>
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                  <!-- Dropup -->
+                  <div class="btn-group dropup">
+                    <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Dropup (Up)
+                    </button>
+                    <ul class="dropdown-menu shadow-sm">
+                      <li><a class="dropdown-item" href="#">Action 1</a></li>
+                      <li><a class="dropdown-item" href="#">Action 2</a></li>
+                    </ul>
+                  </div>
+
+                  <!-- Dropend (Right) -->
+                  <div class="btn-group dropend">
+                    <button type="button" class="btn btn-outline-info dropdown-toggle" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Dropend (Right)
+                    </button>
+                    <ul class="dropdown-menu shadow-sm">
+                      <li><a class="dropdown-item" href="#">Sub-action 1</a></li>
+                      <li><a class="dropdown-item" href="#">Sub-action 2</a></li>
+                    </ul>
+                  </div>
+
+                  <!-- Dropstart (Left) -->
+                  <div class="btn-group dropstart">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Dropstart (Left)
+                    </button>
+                    <ul class="dropdown-menu shadow-sm">
+                      <li><a class="dropdown-item" href="#">Left Action 1</a></li>
+                      <li><a class="dropdown-item" href="#">Left Action 2</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <h6 class="small fw-bold text-secondary mb-2">Dropdown with Embedded Form Filter</h6>
+                <div class="dropdown">
+                  <button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false" data-bs-auto-close="outside">
+                    <i class="bi bi-funnel me-1"></i> Filter Records
+                  </button>
+                  <form class="dropdown-menu p-3 shadow" style="min-width: 260px;">
+                    <div class="mb-2">
+                      <label for="filterDateRange" class="form-label small fw-semibold">Date Created</label>
+                      <select class="form-select form-select-sm" id="filterDateRange">
+                        <option>Last 7 days</option>
+                        <option>Last 30 days</option>
+                        <option>This quarter</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <div class="form-check form-switch small">
+                        <input class="form-check-input" type="checkbox" role="switch" id="checkActiveOnly" checked>
+                        <label class="form-check-label" for="checkActiveOnly">Active only</label>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm w-100">Apply Filters</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="app-footer justify-content-between">
+        <div>&copy; 2026 <strong>Vantura BS5</strong>. All rights reserved.</div>
+        <div class="d-none d-sm-flex gap-3">
+          <a href="#" class="text-secondary text-decoration-none">Documentation</a>
+          <a href="#" class="text-secondary text-decoration-none">Support</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/admin.js"></script>
+
+  <script>
+    // Simulate Loading State on Button
+    const btnSimulate = document.getElementById('btnSimulateLoad');
+    const textSimulate = document.getElementById('loadBtnText');
+
+    if (btnSimulate && textSimulate) {
+      btnSimulate.addEventListener('click', () => {
+        btnSimulate.disabled = true;
+        btnSimulate.innerHTML = '<span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>Simulating API (2s)...';
+        setTimeout(() => {
+          btnSimulate.disabled = false;
+          btnSimulate.innerHTML = '<i class="bi bi-check-circle-fill text-success me-1"></i> Success! Click Again';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+
+</html>

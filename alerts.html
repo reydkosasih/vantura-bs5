@@ -1,0 +1,543 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerts & Modals - Modern Bootstrap 5 Admin Panel</title>
+  <!-- Early Theme Detection Script (Prevents FOUT / Theme Flicker) -->
+  <script>
+    (function () {
+      const storedTheme = localStorage.getItem('admin-template-theme');
+      const resolvedTheme = (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) || (storedTheme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-bs-theme', resolvedTheme);
+    })();
+  </script>
+  <!-- Google Fonts (Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Custom Admin CSS -->
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <div class="app-wrapper" id="appWrapper">
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="app-sidebar" id="appSidebar">
+      <a href="index.html" class="sidebar-brand">
+        <i class="bi bi-cpu-fill text-primary"></i>
+        <span class="sidebar-brand-text">Vantura BS5</span>
+      </a>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-heading">Main</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard">
+              <span class="nav-icon"><i class="bi bi-grid-fill"></i></span>
+              <span class="nav-text">Dashboard</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-heading">UI Components</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="buttons.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Buttons & Dropdowns">
+              <span class="nav-icon"><i class="bi bi-menu-button-wide-fill"></i></span>
+              <span class="nav-text">Buttons & Dropdowns</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="cards.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Cards">
+              <span class="nav-icon"><i class="bi bi-card-heading"></i></span>
+              <span class="nav-text">Cards</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="forms.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Forms">
+              <span class="nav-icon"><i class="bi bi-input-cursor-text"></i></span>
+              <span class="nav-text">Forms</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="tables.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Tables">
+              <span class="nav-icon"><i class="bi bi-table"></i></span>
+              <span class="nav-text">Tables</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="alerts.html" class="nav-link active" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Alerts & Modals">
+              <span class="nav-icon"><i class="bi bi-bell"></i></span>
+              <span class="nav-text">Alerts & Modals</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="charts.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Charts">
+              <span class="nav-icon"><i class="bi bi-pie-chart"></i></span>
+              <span class="nav-text">Charts</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-heading">Account & System</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="profile.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Profile & Settings">
+              <span class="nav-icon"><i class="bi bi-person-gear"></i></span>
+              <span class="nav-text">Profile & Settings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#authSubmenu" role="button" aria-expanded="false"
+              aria-controls="authSubmenu">
+              <span class="nav-icon"><i class="bi bi-shield-lock"></i></span>
+              <span class="nav-text">Authentication</span>
+            </a>
+            <div class="collapse" id="authSubmenu">
+              <ul class="sidebar-submenu">
+                <li><a href="auth-login.html" class="nav-link">Sign In</a></li>
+                <li><a href="auth-register.html" class="nav-link">Sign Up</a></li>
+                <li><a href="auth-forgot.html" class="nav-link">Forgot Password</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="avatar avatar-md bg-primary-subtle text-primary">
+          <i class="bi bi-person-fill"></i>
+          <span class="avatar-status bg-success"></span>
+        </div>
+        <div class="user-info flex-grow-1 overflow-hidden">
+          <div class="fw-semibold text-truncate small">Michael De Santa</div>
+          <div class="text-secondary small text-truncate" style="font-size: 0.75rem;">Lead Designer</div>
+        </div>
+        <a href="auth-login.html" class="btn btn-sm btn-icon" title="Logout" data-bs-toggle="tooltip">
+          <i class="bi bi-box-arrow-right"></i>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="app-main" id="appMain">
+      <header class="app-header">
+        <button class="btn btn-icon me-2" id="sidebarToggle" aria-label="Toggle Sidebar">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+
+        <div class="header-search position-relative me-auto">
+          <i class="bi bi-search header-search-icon"></i>
+          <input type="text" class="form-control" placeholder="Search feedback, alerts..." aria-label="Search">
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <!-- Theme Switcher -->
+          <div class="dropdown">
+            <button class="btn btn-icon" id="bd-theme" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-circle-half theme-icon-active fs-5"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+              <li><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"><i
+                    class="bi bi-sun-fill me-2 opacity-75"></i> Light</button></li>
+              <li><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"><i
+                    class="bi bi-moon-stars-fill me-2 opacity-75"></i> Dark</button></li>
+              <li><button type="button" class="dropdown-item d-flex align-items-center active"
+                  data-bs-theme-value="auto"><i class="bi bi-circle-half me-2 opacity-75"></i> Auto (System)</button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- User Menu -->
+          <div class="dropdown ms-1">
+            <button class="btn p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="avatar avatar-md bg-primary-subtle text-primary"><i class="bi bi-person-fill"></i></div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="min-width: 220px;">
+              <li class="px-3 py-2 border-bottom">
+                <div class="fw-semibold">Michael De Santa</div>
+                <div class="text-secondary small">michael.desanta@company.io</div>
+              </li>
+              <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person me-2"></i> Profile</a></li>
+              <li><a class="dropdown-item py-2" href="profile.html#settings"><i class="bi bi-gear me-2"></i>
+                  Settings</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item py-2 text-danger" href="auth-login.html"><i
+                    class="bi bi-box-arrow-right me-2"></i> Sign Out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <main class="app-content">
+        <!-- Page Header -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+          <div>
+            <h4 class="fw-bold mb-1">Alerts, Toasts & Modals</h4>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb small mb-0">
+                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Alerts & Modals</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <!-- Col 1: Dismissible Alerts -->
+          <div class="col-12 col-xl-6">
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="fw-semibold">Dismissible Contextual Alerts</span>
+              </div>
+              <div class="card-body">
+                <!-- Success -->
+                <div class="alert alert-success alert-dismissible fade show d-flex align-items-center gap-2"
+                  role="alert">
+                  <i class="bi bi-check-circle-fill fs-5"></i>
+                  <div><strong>Success!</strong> Your system configuration was saved properly.</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <!-- Info -->
+                <div class="alert alert-info alert-dismissible fade show d-flex align-items-center gap-2" role="alert">
+                  <i class="bi bi-info-circle-fill fs-5"></i>
+                  <div><strong>Notice:</strong> Maintenance window scheduled tonight at 02:00 AM UTC.</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <!-- Warning -->
+                <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center gap-2"
+                  role="alert">
+                  <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+                  <div><strong>Warning:</strong> Disk volume <code>/var/log</code> exceeds 85% storage limit.</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <!-- Danger -->
+                <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center gap-2"
+                  role="alert">
+                  <i class="bi bi-x-octagon-fill fs-5"></i>
+                  <div><strong>Error:</strong> Failed to connect to third-party webhook API.</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <!-- Primary Subtle -->
+                <div class="alert alert-primary alert-dismissible fade show d-flex align-items-center gap-2 mb-0"
+                  role="alert">
+                  <i class="bi bi-lightbulb-fill fs-5"></i>
+                  <div><strong>Pro Tip:</strong> Toggle the header theme switch to try out system dark mode.</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Col 2: Live Toasts & Badges -->
+          <div class="col-12 col-xl-6">
+            <!-- Live Toast Triggers -->
+            <div class="card mb-4">
+              <div class="card-header">
+                <span class="fw-semibold">Live Toast Notifications</span>
+              </div>
+              <div class="card-body">
+                <p class="text-secondary small mb-3">
+                  Click the buttons below to fire reactive Bootstrap 5 Toast notifications rendered via native
+                  JavaScript:
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                  <button type="button" class="btn btn-success btn-sm" id="btnLiveToastSuccess">
+                    <i class="bi bi-check-lg me-1"></i> Success Toast
+                  </button>
+                  <button type="button" class="btn btn-warning btn-sm" id="btnLiveToastWarning">
+                    <i class="bi bi-exclamation-circle me-1"></i> Warning Toast
+                  </button>
+                  <button type="button" class="btn btn-danger btn-sm" id="btnLiveToastDanger">
+                    <i class="bi bi-bug me-1"></i> Error Toast
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Badges Showcase -->
+            <div class="card">
+              <div class="card-header">
+                <span class="fw-semibold">Badges & Indicators</span>
+              </div>
+              <div class="card-body">
+                <h6 class="small fw-bold text-secondary mb-2">Standard & Pill Badges</h6>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="badge bg-primary">Primary</span>
+                  <span class="badge bg-secondary">Secondary</span>
+                  <span class="badge bg-success rounded-pill">Success Pill</span>
+                  <span class="badge bg-danger rounded-pill">Danger Pill</span>
+                  <span class="badge bg-warning text-dark">Warning</span>
+                  <span class="badge bg-info text-dark">Info</span>
+                </div>
+
+                <h6 class="small fw-bold text-secondary mb-2">Subtle Tone Badges (BS 5.3)</h6>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="badge bg-primary-subtle text-primary">Primary Subtle</span>
+                  <span class="badge bg-success-subtle text-success">Success Subtle</span>
+                  <span class="badge bg-danger-subtle text-danger">Danger Subtle</span>
+                  <span class="badge bg-warning-subtle text-warning">Warning Subtle</span>
+                  <span class="badge bg-info-subtle text-info">Info Subtle</span>
+                </div>
+
+                <h6 class="small fw-bold text-secondary mb-2">Buttons with Counter Badges</h6>
+                <div class="d-flex flex-wrap gap-2">
+                  <button type="button" class="btn btn-outline-primary btn-sm position-relative">
+                    Inbox
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      9+
+                    </span>
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm position-relative ms-2">
+                    Orders
+                    <span
+                      class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Modals Showcase -->
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <span class="fw-semibold">Bootstrap 5 Interactive Modals</span>
+              </div>
+              <div class="card-body">
+                <p class="text-secondary small mb-3">
+                  Test pre-configured modal variations designed for confirmation dialogues, form data entry, and
+                  detailed views:
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                  <!-- Confirmation Modal Trigger -->
+                  <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#deleteConfirmationModal">
+                    <i class="bi bi-trash me-1"></i> Delete Confirmation Modal
+                  </button>
+
+                  <!-- Form Modal Trigger -->
+                  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#inviteUserModal">
+                    <i class="bi bi-person-plus me-1"></i> Form Input Modal
+                  </button>
+
+                  <!-- Large Modal Trigger -->
+                  <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#largeDetailModal">
+                    <i class="bi bi-arrows-fullscreen me-1"></i> Large Content Modal
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="app-footer justify-content-between">
+        <div>&copy; 2026 <strong>Vantura BS5</strong>. All rights reserved.</div>
+        <div class="d-none d-sm-flex gap-3">
+          <a href="#" class="text-secondary text-decoration-none">Documentation</a>
+          <a href="#" class="text-secondary text-decoration-none">Support</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL DIALOGUES
+       ========================================== -->
+
+  <!-- 1. Delete Confirmation Modal -->
+  <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold text-danger" id="deleteModalLabel">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>Delete Confirmation
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-3">
+          <p class="mb-0">Are you sure you want to delete this resource? This action cannot be undone and will
+            permanently remove associated data.</p>
+        </div>
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Yes, Delete It</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Invite User Form Modal -->
+  <div class="modal fade" id="inviteUserModal" tabindex="-1" aria-labelledby="inviteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="inviteModalLabel">Invite Team Member</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="inviteEmail" class="form-label small fw-semibold">Email Address</label>
+              <input type="email" class="form-control" id="inviteEmail" placeholder="colleague@company.com">
+            </div>
+            <div class="mb-3">
+              <label for="inviteRole" class="form-label small fw-semibold">Role & Permissions</label>
+              <select class="form-select" id="inviteRole">
+                <option value="member">Workspace Member</option>
+                <option value="editor">Editor</option>
+                <option value="admin">Administrator</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">Send Invitation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Large Detail Modal -->
+  <div class="modal fade" id="largeDetailModal" tabindex="-1" aria-labelledby="largeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="largeModalLabel">System Audit Logs</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-secondary small">Review security events and system changes logged in the last 24 hours.</p>
+          <div class="table-responsive">
+            <table class="table table-sm table-striped">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Actor</th>
+                  <th>Action</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2026-10-06 12:45:12</td>
+                  <td>michael.desanta</td>
+                  <td>Role modified for user #491</td>
+                  <td><span class="badge bg-success">Success</span></td>
+                </tr>
+                <tr>
+                  <td>2026-10-06 11:20:05</td>
+                  <td>system_bot</td>
+                  <td>Auto-backup completed</td>
+                  <td><span class="badge bg-success">Success</span></td>
+                </tr>
+                <tr>
+                  <td>2026-10-06 09:15:33</td>
+                  <td>192.168.1.104</td>
+                  <td>Failed login attempt</td>
+                  <td><span class="badge bg-danger">Failed</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       TOAST CONTAINER
+       ========================================== -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1090;">
+    <!-- Success Toast -->
+    <div id="toastSuccess" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive"
+      aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body d-flex align-items-center gap-2">
+          <i class="bi bi-check-circle fs-5"></i>
+          <div><strong>Success!</strong> Changes saved successfully.</div>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Close"></button>
+      </div>
+    </div>
+
+    <!-- Warning Toast -->
+    <div id="toastWarning" class="toast align-items-center text-bg-warning border-0" role="alert" aria-live="assertive"
+      aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body d-flex align-items-center gap-2">
+          <i class="bi bi-exclamation-triangle fs-5"></i>
+          <div><strong>Warning:</strong> Session expiring in 5 minutes.</div>
+        </div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+
+    <!-- Danger Toast -->
+    <div id="toastDanger" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive"
+      aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body d-flex align-items-center gap-2">
+          <i class="bi bi-bug fs-5"></i>
+          <div><strong>Error!</strong> Could not synchronize cloud files.</div>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/admin.js"></script>
+
+  <script>
+    // Live Toast Triggers
+    const toastSuccessEl = document.getElementById('toastSuccess');
+    const toastWarningEl = document.getElementById('toastWarning');
+    const toastDangerEl = document.getElementById('toastDanger');
+
+    document.getElementById('btnLiveToastSuccess').addEventListener('click', () => {
+      new bootstrap.Toast(toastSuccessEl).show();
+    });
+
+    document.getElementById('btnLiveToastWarning').addEventListener('click', () => {
+      new bootstrap.Toast(toastWarningEl).show();
+    });
+
+    document.getElementById('btnLiveToastDanger').addEventListener('click', () => {
+      new bootstrap.Toast(toastDangerEl).show();
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,529 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tables - Modern Bootstrap 5 Admin Panel</title>
+  <!-- Early Theme Detection Script (Prevents FOUT / Theme Flicker) -->
+  <script>
+    (function () {
+      const storedTheme = localStorage.getItem('admin-template-theme');
+      const resolvedTheme = (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) || (storedTheme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-bs-theme', resolvedTheme);
+    })();
+  </script>
+  <!-- Google Fonts (Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- DataTables BS5 CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css">
+  <!-- Custom Admin CSS -->
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <div class="app-wrapper" id="appWrapper">
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="app-sidebar" id="appSidebar">
+      <a href="index.html" class="sidebar-brand">
+        <i class="bi bi-cpu-fill text-primary"></i>
+        <span class="sidebar-brand-text">Vantura BS5</span>
+      </a>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-heading">Main</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard">
+              <span class="nav-icon"><i class="bi bi-grid-fill"></i></span>
+              <span class="nav-text">Dashboard</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-heading">UI Components</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="buttons.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Buttons & Dropdowns">
+              <span class="nav-icon"><i class="bi bi-menu-button-wide-fill"></i></span>
+              <span class="nav-text">Buttons & Dropdowns</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="cards.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Cards">
+              <span class="nav-icon"><i class="bi bi-card-heading"></i></span>
+              <span class="nav-text">Cards</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="forms.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Forms">
+              <span class="nav-icon"><i class="bi bi-input-cursor-text"></i></span>
+              <span class="nav-text">Forms</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="tables.html" class="nav-link active" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Tables">
+              <span class="nav-icon"><i class="bi bi-table"></i></span>
+              <span class="nav-text">Tables</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="alerts.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Alerts & Modals">
+              <span class="nav-icon"><i class="bi bi-bell"></i></span>
+              <span class="nav-text">Alerts & Modals</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="charts.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Charts">
+              <span class="nav-icon"><i class="bi bi-pie-chart"></i></span>
+              <span class="nav-text">Charts</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-heading">Account & System</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="profile.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Profile & Settings">
+              <span class="nav-icon"><i class="bi bi-person-gear"></i></span>
+              <span class="nav-text">Profile & Settings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#authSubmenu" role="button" aria-expanded="false"
+              aria-controls="authSubmenu">
+              <span class="nav-icon"><i class="bi bi-shield-lock"></i></span>
+              <span class="nav-text">Authentication</span>
+            </a>
+            <div class="collapse" id="authSubmenu">
+              <ul class="sidebar-submenu">
+                <li><a href="auth-login.html" class="nav-link">Sign In</a></li>
+                <li><a href="auth-register.html" class="nav-link">Sign Up</a></li>
+                <li><a href="auth-forgot.html" class="nav-link">Forgot Password</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="avatar avatar-md bg-primary-subtle text-primary">
+          <i class="bi bi-person-fill"></i>
+          <span class="avatar-status bg-success"></span>
+        </div>
+        <div class="user-info flex-grow-1 overflow-hidden">
+          <div class="fw-semibold text-truncate small">Michael De Santa</div>
+          <div class="text-secondary small text-truncate" style="font-size: 0.75rem;">Lead Designer</div>
+        </div>
+        <a href="auth-login.html" class="btn btn-sm btn-icon" title="Logout" data-bs-toggle="tooltip">
+          <i class="bi bi-box-arrow-right"></i>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="app-main" id="appMain">
+      <header class="app-header">
+        <button class="btn btn-icon me-2" id="sidebarToggle" aria-label="Toggle Sidebar">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+
+        <div class="header-search position-relative me-auto">
+          <i class="bi bi-search header-search-icon"></i>
+          <input type="text" class="form-control" placeholder="Search tables, records..." aria-label="Search">
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <!-- Theme Switcher -->
+          <div class="dropdown">
+            <button class="btn btn-icon" id="bd-theme" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-circle-half theme-icon-active fs-5"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+              <li><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"><i
+                    class="bi bi-sun-fill me-2 opacity-75"></i> Light</button></li>
+              <li><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"><i
+                    class="bi bi-moon-stars-fill me-2 opacity-75"></i> Dark</button></li>
+              <li><button type="button" class="dropdown-item d-flex align-items-center active"
+                  data-bs-theme-value="auto"><i class="bi bi-circle-half me-2 opacity-75"></i> Auto (System)</button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- User Menu -->
+          <div class="dropdown ms-1">
+            <button class="btn p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="avatar avatar-md bg-primary-subtle text-primary"><i class="bi bi-person-fill"></i></div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="min-width: 220px;">
+              <li class="px-3 py-2 border-bottom">
+                <div class="fw-semibold">Michael De Santa</div>
+                <div class="text-secondary small">michael.desanta@company.io</div>
+              </li>
+              <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person me-2"></i> Profile</a></li>
+              <li><a class="dropdown-item py-2" href="profile.html#settings"><i class="bi bi-gear me-2"></i>
+                  Settings</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item py-2 text-danger" href="auth-login.html"><i
+                    class="bi bi-box-arrow-right me-2"></i> Sign Out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <main class="app-content">
+        <!-- Page Title & Breadcrumb -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+          <div>
+            <h4 class="fw-bold mb-1">Data Tables</h4>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb small mb-0">
+                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tables</li>
+              </ol>
+            </nav>
+          </div>
+          <div>
+            <button class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+              <i class="bi bi-plus-lg"></i> Add New Record
+            </button>
+          </div>
+        </div>
+
+        <!-- Section 1: DataTables BS5 CDN Interactive -->
+        <div class="row g-4 mb-4">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="mb-0 fw-bold">Interactive DataTables (BS5 Integration)</h6>
+                  <span class="text-secondary small">Features instant client-side search, multi-column sorting, and
+                    responsive pagination.</span>
+                </div>
+                <span class="badge bg-primary-subtle text-primary">CDN Powered</span>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table id="exampleDataTable" class="table table-striped table-hover align-middle w-100">
+                    <thead>
+                      <tr>
+                        <th>Employee</th>
+                        <th>Position</th>
+                        <th>Department</th>
+                        <th>Office</th>
+                        <th>Start Date</th>
+                        <th>Salary</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="avatar avatar-sm bg-primary text-white">AM</div>
+                            <div>
+                              <div class="fw-semibold">Michael De Santa</div>
+                              <div class="text-secondary small">alex@tech.co</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Lead Designer</td>
+                        <td>Design</td>
+                        <td>Los Santos</td>
+                        <td>2021/04/12</td>
+                        <td>$142,000</td>
+                        <td><span class="badge bg-success-subtle text-success">Active</span></td>
+                        <td class="text-end">
+                          <button class="btn btn-sm btn-icon" title="Edit"><i class="bi bi-pencil-square"></i></button>
+                          <button class="btn btn-sm btn-icon text-danger" title="Delete"><i
+                              class="bi bi-trash"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="avatar avatar-sm bg-success text-white">JD</div>
+                            <div>
+                              <div class="fw-semibold">John Doe</div>
+                              <div class="text-secondary small">john@tech.co</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Fullstack Engineer</td>
+                        <td>Engineering</td>
+                        <td>New York</td>
+                        <td>2020/08/15</td>
+                        <td>$125,000</td>
+                        <td><span class="badge bg-success-subtle text-success">Active</span></td>
+                        <td class="text-end">
+                          <button class="btn btn-sm btn-icon" title="Edit"><i class="bi bi-pencil-square"></i></button>
+                          <button class="btn btn-sm btn-icon text-danger" title="Delete"><i
+                              class="bi bi-trash"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="avatar avatar-sm bg-warning text-white">SK</div>
+                            <div>
+                              <div class="fw-semibold">Sarah Connor</div>
+                              <div class="text-secondary small">sarah@tech.co</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Security Specialist</td>
+                        <td>IT Ops</td>
+                        <td>London</td>
+                        <td>2019/11/02</td>
+                        <td>$138,500</td>
+                        <td><span class="badge bg-warning-subtle text-warning">On Leave</span></td>
+                        <td class="text-end">
+                          <button class="btn btn-sm btn-icon" title="Edit"><i class="bi bi-pencil-square"></i></button>
+                          <button class="btn btn-sm btn-icon text-danger" title="Delete"><i
+                              class="bi bi-trash"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="avatar avatar-sm bg-info text-white">BW</div>
+                            <div>
+                              <div class="fw-semibold">Bruce Wayne</div>
+                              <div class="text-secondary small">bruce@wayne.corp</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Managing Director</td>
+                        <td>Executive</td>
+                        <td>Gotham</td>
+                        <td>2015/01/01</td>
+                        <td>$320,000</td>
+                        <td><span class="badge bg-success-subtle text-success">Active</span></td>
+                        <td class="text-end">
+                          <button class="btn btn-sm btn-icon" title="Edit"><i class="bi bi-pencil-square"></i></button>
+                          <button class="btn btn-sm btn-icon text-danger" title="Delete"><i
+                              class="bi bi-trash"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="avatar avatar-sm bg-danger text-white">PP</div>
+                            <div>
+                              <div class="fw-semibold">Peter Parker</div>
+                              <div class="text-secondary small">peter@dailybugle.com</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Junior Photographer</td>
+                        <td>Marketing</td>
+                        <td>Queens</td>
+                        <td>2022/02/19</td>
+                        <td>$48,000</td>
+                        <td><span class="badge bg-secondary-subtle text-secondary">Part-time</span></td>
+                        <td class="text-end">
+                          <button class="btn btn-sm btn-icon" title="Edit"><i class="bi bi-pencil-square"></i></button>
+                          <button class="btn btn-sm btn-icon text-danger" title="Delete"><i
+                              class="bi bi-trash"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div class="avatar avatar-sm bg-secondary text-white">CR</div>
+                            <div>
+                              <div class="fw-semibold">Clara Oswald</div>
+                              <div class="text-secondary small">clara@time.uk</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Operations Lead</td>
+                        <td>HR</td>
+                        <td>Cardiff</td>
+                        <td>2021/07/20</td>
+                        <td>$89,000</td>
+                        <td><span class="badge bg-success-subtle text-success">Active</span></td>
+                        <td class="text-end">
+                          <button class="btn btn-sm btn-icon" title="Edit"><i class="bi bi-pencil-square"></i></button>
+                          <button class="btn btn-sm btn-icon text-danger" title="Delete"><i
+                              class="bi bi-trash"></i></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Vanilla BS5 Standard Tables -->
+        <div class="row g-4">
+          <!-- Striped & Bordered Table -->
+          <div class="col-12 col-xl-6">
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="fw-semibold">Vanilla Bootstrap Striped Table</span>
+              </div>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table table-striped mb-0 align-middle">
+                    <thead>
+                      <tr>
+                        <th class="ps-3">#</th>
+                        <th>Project</th>
+                        <th>Progress</th>
+                        <th class="pe-3">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="ps-3">1</td>
+                        <td>AdminKit Redesign</td>
+                        <td>
+                          <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 85%"></div>
+                          </div>
+                        </td>
+                        <td class="pe-3"><span class="badge bg-primary">In Review</span></td>
+                      </tr>
+                      <tr>
+                        <td class="ps-3">2</td>
+                        <td>Mobile App Auth API</td>
+                        <td>
+                          <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%"></div>
+                          </div>
+                        </td>
+                        <td class="pe-3"><span class="badge bg-success">Done</span></td>
+                      </tr>
+                      <tr>
+                        <td class="ps-3">3</td>
+                        <td>Payment Gateway V2</td>
+                        <td>
+                          <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 45%"></div>
+                          </div>
+                        </td>
+                        <td class="pe-3"><span class="badge bg-warning">In Progress</span></td>
+                      </tr>
+                      <tr>
+                        <td class="ps-3">4</td>
+                        <td>Customer Feedback Hub</td>
+                        <td>
+                          <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"></div>
+                          </div>
+                        </td>
+                        <td class="pe-3"><span class="badge bg-danger">Delayed</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contextual Colors Table -->
+          <div class="col-12 col-xl-6">
+            <div class="card h-100">
+              <div class="card-header">
+                <span class="fw-semibold">Contextual Rows & Small Table</span>
+              </div>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table table-sm table-hover mb-0 align-middle">
+                    <thead>
+                      <tr>
+                        <th class="ps-3">Class</th>
+                        <th>Description</th>
+                        <th class="pe-3">Response Code</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="table-success">
+                        <td class="ps-3 fw-bold">table-success</td>
+                        <td>Operation succeeded</td>
+                        <td class="pe-3"><code>200 OK</code></td>
+                      </tr>
+                      <tr class="table-info">
+                        <td class="ps-3 fw-bold">table-info</td>
+                        <td>Informational response</td>
+                        <td class="pe-3"><code>202 Accepted</code></td>
+                      </tr>
+                      <tr class="table-warning">
+                        <td class="ps-3 fw-bold">table-warning</td>
+                        <td>Requires client attention</td>
+                        <td class="pe-3"><code>429 Rate Limit</code></td>
+                      </tr>
+                      <tr class="table-danger">
+                        <td class="ps-3 fw-bold">table-danger</td>
+                        <td>Critical server failure</td>
+                        <td class="pe-3"><code>500 Error</code></td>
+                      </tr>
+                      <tr>
+                        <td class="ps-3 fw-bold">table-light</td>
+                        <td>Neutral status</td>
+                        <td class="pe-3"><code>304 Not Modified</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="app-footer justify-content-between">
+        <div>&copy; 2026 <strong>Vantura BS5</strong>. All rights reserved.</div>
+        <div class="d-none d-sm-flex gap-3">
+          <a href="#" class="text-secondary text-decoration-none">Documentation</a>
+          <a href="#" class="text-secondary text-decoration-none">Support</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <!-- jQuery & DataTables CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.min.js"></script>
+  <!-- Admin Controller -->
+  <script src="js/admin.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#exampleDataTable').DataTable({
+        pageLength: 5,
+        lengthMenu: [5, 10, 25, 50],
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search employee records..."
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

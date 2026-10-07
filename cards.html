@@ -1,0 +1,454 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cards - Modern Bootstrap 5 Admin Panel</title>
+  <!-- Early Theme Detection Script (Prevents FOUT / Theme Flicker) -->
+  <script>
+    (function () {
+      const storedTheme = localStorage.getItem('admin-template-theme');
+      const resolvedTheme = (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) || (storedTheme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-bs-theme', resolvedTheme);
+    })();
+  </script>
+  <!-- Google Fonts (Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Custom Admin CSS -->
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <div class="app-wrapper" id="appWrapper">
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="app-sidebar" id="appSidebar">
+      <a href="index.html" class="sidebar-brand">
+        <i class="bi bi-cpu-fill text-primary"></i>
+        <span class="sidebar-brand-text">Vantura BS5</span>
+      </a>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-heading">Main</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard">
+              <span class="nav-icon"><i class="bi bi-grid-fill"></i></span>
+              <span class="nav-text">Dashboard</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-heading">UI Components</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="buttons.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Buttons & Dropdowns">
+              <span class="nav-icon"><i class="bi bi-menu-button-wide-fill"></i></span>
+              <span class="nav-text">Buttons & Dropdowns</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="cards.html" class="nav-link active" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Cards">
+              <span class="nav-icon"><i class="bi bi-card-heading"></i></span>
+              <span class="nav-text">Cards</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="forms.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Forms">
+              <span class="nav-icon"><i class="bi bi-input-cursor-text"></i></span>
+              <span class="nav-text">Forms</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="tables.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Tables">
+              <span class="nav-icon"><i class="bi bi-table"></i></span>
+              <span class="nav-text">Tables</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="alerts.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Alerts & Modals">
+              <span class="nav-icon"><i class="bi bi-bell"></i></span>
+              <span class="nav-text">Alerts & Modals</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="charts.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Charts">
+              <span class="nav-icon"><i class="bi bi-pie-chart"></i></span>
+              <span class="nav-text">Charts</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-heading">Account & System</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="profile.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Profile & Settings">
+              <span class="nav-icon"><i class="bi bi-person-gear"></i></span>
+              <span class="nav-text">Profile & Settings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#authSubmenu" role="button" aria-expanded="false"
+              aria-controls="authSubmenu">
+              <span class="nav-icon"><i class="bi bi-shield-lock"></i></span>
+              <span class="nav-text">Authentication</span>
+            </a>
+            <div class="collapse" id="authSubmenu">
+              <ul class="sidebar-submenu">
+                <li><a href="auth-login.html" class="nav-link">Sign In</a></li>
+                <li><a href="auth-register.html" class="nav-link">Sign Up</a></li>
+                <li><a href="auth-forgot.html" class="nav-link">Forgot Password</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="avatar avatar-md bg-primary-subtle text-primary">
+          <i class="bi bi-person-fill"></i>
+          <span class="avatar-status bg-success"></span>
+        </div>
+        <div class="user-info flex-grow-1 overflow-hidden">
+          <div class="fw-semibold text-truncate small">Michael De Santa</div>
+          <div class="text-secondary small text-truncate" style="font-size: 0.75rem;">Lead Designer</div>
+        </div>
+        <a href="auth-login.html" class="btn btn-sm btn-icon" title="Logout" data-bs-toggle="tooltip">
+          <i class="bi bi-box-arrow-right"></i>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="app-main" id="appMain">
+      <header class="app-header">
+        <button class="btn btn-icon me-2" id="sidebarToggle" aria-label="Toggle Sidebar">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+
+        <div class="header-search position-relative me-auto">
+          <i class="bi bi-search header-search-icon"></i>
+          <input type="text" class="form-control" placeholder="Search cards, widgets..." aria-label="Search">
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <!-- Theme Switcher -->
+          <div class="dropdown">
+            <button class="btn btn-icon" id="bd-theme" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-circle-half theme-icon-active fs-5"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+              <li><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"><i
+                    class="bi bi-sun-fill me-2 opacity-75"></i> Light</button></li>
+              <li><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"><i
+                    class="bi bi-moon-stars-fill me-2 opacity-75"></i> Dark</button></li>
+              <li><button type="button" class="dropdown-item d-flex align-items-center active"
+                  data-bs-theme-value="auto"><i class="bi bi-circle-half me-2 opacity-75"></i> Auto (System)</button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- User Menu -->
+          <div class="dropdown ms-1">
+            <button class="btn p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="avatar avatar-md bg-primary-subtle text-primary"><i class="bi bi-person-fill"></i></div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="min-width: 220px;">
+              <li class="px-3 py-2 border-bottom">
+                <div class="fw-semibold">Michael De Santa</div>
+                <div class="text-secondary small">michael.desanta@company.io</div>
+              </li>
+              <li><a class="dropdown-item py-2" href="profile.html"><i class="bi bi-person me-2"></i> Profile</a></li>
+              <li><a class="dropdown-item py-2" href="profile.html#settings"><i class="bi bi-gear me-2"></i>
+                  Settings</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item py-2 text-danger" href="auth-login.html"><i
+                    class="bi bi-box-arrow-right me-2"></i> Sign Out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <main class="app-content">
+        <!-- Page Header -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+          <div>
+            <h4 class="fw-bold mb-1">Card Components & Decks</h4>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb small mb-0">
+                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cards</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Metric Accent Cards -->
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-md-6 col-xl-3">
+            <div class="card border-primary border-top border-3 card-hover h-100">
+              <div class="card-body">
+                <div class="text-secondary small fw-bold mb-1">PROJECT TASKS</div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h3 class="fw-bold mb-0">48 / 60</h3>
+                  <i class="bi bi-check2-circle text-primary fs-3"></i>
+                </div>
+                <div class="progress" style="height: 6px;">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 80%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-xl-3">
+            <div class="card border-success border-top border-3 card-hover h-100">
+              <div class="card-body">
+                <div class="text-secondary small fw-bold mb-1">SYSTEM UPTIME</div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h3 class="fw-bold mb-0">99.98%</h3>
+                  <i class="bi bi-activity text-success fs-3"></i>
+                </div>
+                <div class="progress" style="height: 6px;">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 99%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-xl-3">
+            <div class="card border-warning border-top border-3 card-hover h-100">
+              <div class="card-body">
+                <div class="text-secondary small fw-bold mb-1">CPU LOAD</div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h3 class="fw-bold mb-0">42.5%</h3>
+                  <i class="bi bi-cpu text-warning fs-3"></i>
+                </div>
+                <div class="progress" style="height: 6px;">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 42%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-xl-3">
+            <div class="card border-danger border-top border-3 card-hover h-100">
+              <div class="card-body">
+                <div class="text-secondary small fw-bold mb-1">PENDING TICKETS</div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h3 class="fw-bold mb-0">14</h3>
+                  <i class="bi bi-headset text-danger fs-3"></i>
+                </div>
+                <div class="progress" style="height: 6px;">
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: 25%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive & Collapsible Cards -->
+        <div class="row g-4 mb-4">
+          <!-- Collapsible Card -->
+          <div class="col-12 col-md-6">
+            <div class="card" id="collapsibleCardDemo">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <span class="fw-semibold">Collapsible Panel</span>
+                <button class="btn btn-sm btn-icon" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseCardBody" aria-expanded="true">
+                  <i class="bi bi-chevron-down"></i>
+                </button>
+              </div>
+              <div class="collapse show" id="collapseCardBody">
+                <div class="card-body">
+                  <h5 class="card-title fw-bold">Flexible Dashboard Component</h5>
+                  <p class="card-text text-secondary">
+                    This card utilizes standard Bootstrap collapse data attributes to toggle its body visibility
+                    smoothly without writing custom JavaScript code.
+                  </p>
+                  <a href="#" class="btn btn-primary btn-sm">Take Action</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dismissible / Closable Card -->
+          <div class="col-12 col-md-6">
+            <div class="card" id="dismissibleCardDemo">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <span class="fw-semibold">Dismissible Card</span>
+                <button type="button" class="btn-close" aria-label="Close"
+                  onclick="document.getElementById('dismissibleCardDemo').style.display='none'"></button>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title fw-bold">Closable Widget Notification</h5>
+                <p class="card-text text-secondary">
+                  Users can dismiss this card when finished reviewing notifications or promotional banners. State can be
+                  tied to local storage in production.
+                </p>
+                <div class="d-flex gap-2">
+                  <span class="badge bg-info-subtle text-info">Announcement</span>
+                  <span class="badge bg-secondary-subtle text-secondary">Dismissible</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Horizontal Media Card & Featured Image -->
+        <div class="row g-4 mb-4">
+          <div class="col-12 col-lg-8">
+            <div class="card overflow-hidden">
+              <div class="row g-0 align-items-center">
+                <div
+                  class="col-md-4 bg-primary text-white p-4 text-center d-flex flex-column justify-content-center align-items-center"
+                  style="min-height: 180px;">
+                  <i class="bi bi-rocket-takeoff-fill display-4 mb-2"></i>
+                  <span class="fw-bold">Version 2.0 Released</span>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title fw-bold">Built for Performance & Mobile Usability</h5>
+                    <p class="card-text text-secondary small">
+                      Our new template architecture brings enhanced responsiveness, seamless theme toggling, and clean
+                      modular code suitable for any backend framework.
+                    </p>
+                    <p class="card-text small text-muted"><i class="bi bi-clock me-1"></i> Updated 2 days ago</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-4">
+            <div class="card h-100">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <span class="fw-semibold">Quick Shortcuts</span>
+                <i class="bi bi-three-dots-vertical text-secondary"></i>
+              </div>
+              <div class="card-body">
+                <div class="d-grid gap-2">
+                  <a href="forms.html"
+                    class="btn btn-outline-primary btn-sm text-start d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-plus-circle me-2"></i>Create New Record</span>
+                    <i class="bi bi-chevron-right small"></i>
+                  </a>
+                  <a href="tables.html"
+                    class="btn btn-outline-secondary btn-sm text-start d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-file-earmark-spreadsheet me-2"></i>Export Customer List</span>
+                    <i class="bi bi-chevron-right small"></i>
+                  </a>
+                  <a href="profile.html"
+                    class="btn btn-outline-info btn-sm text-start d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-shield-check me-2"></i>Security Audit</span>
+                    <i class="bi bi-chevron-right small"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Tier Cards Deck -->
+        <h5 class="fw-bold mb-3">Subscription Tier Decks</h5>
+        <div class="row g-4">
+          <!-- Starter -->
+          <div class="col-12 col-lg-4">
+            <div class="card h-100">
+              <div class="card-body p-4 text-center">
+                <h5 class="fw-bold mb-2">Starter</h5>
+                <p class="text-secondary small mb-4">Essential tools for individual developers</p>
+                <div class="mb-4">
+                  <span class="display-6 fw-bold">$19</span>
+                  <span class="text-secondary">/ month</span>
+                </div>
+                <ul class="list-unstyled text-start small mb-4 d-flex flex-column gap-2">
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i> Up to 5 Projects</li>
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i> Community Support</li>
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i> 10GB Cloud Storage</li>
+                  <li class="text-secondary opacity-50"><i class="bi bi-x-circle me-2"></i> Dedicated SLA</li>
+                </ul>
+                <button class="btn btn-outline-primary w-100">Select Starter</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Professional (Featured) -->
+          <div class="col-12 col-lg-4">
+            <div class="card border-primary border-2 shadow-sm h-100 position-relative">
+              <div class="position-absolute top-0 start-50 translate-middle">
+                <span class="badge bg-primary px-3 py-1 rounded-pill">Most Popular</span>
+              </div>
+              <div class="card-body p-4 text-center">
+                <h5 class="fw-bold mb-2 mt-1">Professional</h5>
+                <p class="text-secondary small mb-4">Advanced workflow for scaling companies</p>
+                <div class="mb-4">
+                  <span class="display-6 fw-bold text-primary">$49</span>
+                  <span class="text-secondary">/ month</span>
+                </div>
+                <ul class="list-unstyled text-start small mb-4 d-flex flex-column gap-2">
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i> Unlimited Projects</li>
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i> 24/7 Priority Support</li>
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i> 100GB Cloud Storage</li>
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i> Custom Domain & SSL</li>
+                </ul>
+                <button class="btn btn-primary w-100">Get Professional</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Enterprise -->
+          <div class="col-12 col-lg-4">
+            <div class="card h-100">
+              <div class="card-body p-4 text-center">
+                <h5 class="fw-bold mb-2">Enterprise</h5>
+                <p class="text-secondary small mb-4">Full power and dedicated infrastructure</p>
+                <div class="mb-4">
+                  <span class="display-6 fw-bold">$129</span>
+                  <span class="text-secondary">/ month</span>
+                </div>
+                <ul class="list-unstyled text-start small mb-4 d-flex flex-column gap-2">
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i> Unlimited Everything</li>
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i> 99.99% Uptime Guarantee</li>
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i> Dedicated Account Manager</li>
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i> Custom Security Compliance</li>
+                </ul>
+                <button class="btn btn-outline-primary w-100">Contact Sales</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="app-footer justify-content-between">
+        <div>&copy; 2026 <strong>Vantura BS5</strong>. All rights reserved.</div>
+        <div class="d-none d-sm-flex gap-3">
+          <a href="#" class="text-secondary text-decoration-none">Documentation</a>
+          <a href="#" class="text-secondary text-decoration-none">Support</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>

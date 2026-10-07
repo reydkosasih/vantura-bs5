@@ -1,0 +1,553 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile & Settings - Modern Bootstrap 5 Admin Panel</title>
+  <!-- Early Theme Detection Script (Prevents FOUT / Theme Flicker) -->
+  <script>
+    (function () {
+      const storedTheme = localStorage.getItem('admin-template-theme');
+      const resolvedTheme = (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches) || (storedTheme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-bs-theme', resolvedTheme);
+    })();
+  </script>
+  <!-- Google Fonts (Plus Jakarta Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Custom Admin CSS -->
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <div class="app-wrapper" id="appWrapper">
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="app-sidebar" id="appSidebar">
+      <a href="index.html" class="sidebar-brand">
+        <i class="bi bi-cpu-fill text-primary"></i>
+        <span class="sidebar-brand-text">Vantura BS5</span>
+      </a>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-heading">Main</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard">
+              <span class="nav-icon"><i class="bi bi-grid-fill"></i></span>
+              <span class="nav-text">Dashboard</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-heading">UI Components</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="buttons.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Buttons & Dropdowns">
+              <span class="nav-icon"><i class="bi bi-menu-button-wide-fill"></i></span>
+              <span class="nav-text">Buttons & Dropdowns</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="cards.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Cards">
+              <span class="nav-icon"><i class="bi bi-card-heading"></i></span>
+              <span class="nav-text">Cards</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="forms.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Forms">
+              <span class="nav-icon"><i class="bi bi-input-cursor-text"></i></span>
+              <span class="nav-text">Forms</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="tables.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Tables">
+              <span class="nav-icon"><i class="bi bi-table"></i></span>
+              <span class="nav-text">Tables</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="alerts.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Alerts & Modals">
+              <span class="nav-icon"><i class="bi bi-bell"></i></span>
+              <span class="nav-text">Alerts & Modals</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="charts.html" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" title="Charts">
+              <span class="nav-icon"><i class="bi bi-pie-chart"></i></span>
+              <span class="nav-text">Charts</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sidebar-heading">Account & System</div>
+        <ul class="nav-sidebar">
+          <li class="nav-item">
+            <a href="profile.html" class="nav-link active" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Profile & Settings">
+              <span class="nav-icon"><i class="bi bi-person-gear"></i></span>
+              <span class="nav-text">Profile & Settings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#authSubmenu" role="button" aria-expanded="false"
+              aria-controls="authSubmenu">
+              <span class="nav-icon"><i class="bi bi-shield-lock"></i></span>
+              <span class="nav-text">Authentication</span>
+            </a>
+            <div class="collapse" id="authSubmenu">
+              <ul class="sidebar-submenu">
+                <li><a href="auth-login.html" class="nav-link">Sign In</a></li>
+                <li><a href="auth-register.html" class="nav-link">Sign Up</a></li>
+                <li><a href="auth-forgot.html" class="nav-link">Forgot Password</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="avatar avatar-md bg-primary-subtle text-primary">
+          <i class="bi bi-person-fill"></i>
+          <span class="avatar-status bg-success"></span>
+        </div>
+        <div class="user-info flex-grow-1 overflow-hidden">
+          <div class="fw-semibold text-truncate small">Michael De Santa</div>
+          <div class="text-secondary small text-truncate" style="font-size: 0.75rem;">Lead Designer</div>
+        </div>
+        <a href="auth-login.html" class="btn btn-sm btn-icon" title="Logout" data-bs-toggle="tooltip">
+          <i class="bi bi-box-arrow-right"></i>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="app-main" id="appMain">
+      <header class="app-header">
+        <button class="btn btn-icon me-2" id="sidebarToggle" aria-label="Toggle Sidebar">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+
+        <div class="header-search position-relative me-auto">
+          <i class="bi bi-search header-search-icon"></i>
+          <input type="text" class="form-control" placeholder="Search profile settings..." aria-label="Search">
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <!-- Theme Switcher -->
+          <div class="dropdown">
+            <button class="btn btn-icon" id="bd-theme" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-circle-half theme-icon-active fs-5"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+              <li><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"><i
+                    class="bi bi-sun-fill me-2 opacity-75"></i> Light</button></li>
+              <li><button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"><i
+                    class="bi bi-moon-stars-fill me-2 opacity-75"></i> Dark</button></li>
+              <li><button type="button" class="dropdown-item d-flex align-items-center active"
+                  data-bs-theme-value="auto"><i class="bi bi-circle-half me-2 opacity-75"></i> Auto (System)</button>
+              </li>
+            </ul>
+          </div>
+
+          <!-- User Menu -->
+          <div class="dropdown ms-1">
+            <button class="btn p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="avatar avatar-md bg-primary-subtle text-primary"><i class="bi bi-person-fill"></i></div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="min-width: 220px;">
+              <li class="px-3 py-2 border-bottom">
+                <div class="fw-semibold">Michael De Santa</div>
+                <div class="text-secondary small">michael.desanta@company.io</div>
+              </li>
+              <li><a class="dropdown-item py-2 active" href="profile.html"><i class="bi bi-person me-2"></i> Profile</a>
+              </li>
+              <li><a class="dropdown-item py-2" href="profile.html#settings"><i class="bi bi-gear me-2"></i>
+                  Settings</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item py-2 text-danger" href="auth-login.html"><i
+                    class="bi bi-box-arrow-right me-2"></i> Sign Out</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <main class="app-content">
+        <!-- Profile Banner Card -->
+        <div class="card mb-4 overflow-hidden">
+          <div class="profile-banner text-white position-relative">
+            <div
+              class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
+              <div class="d-flex align-items-center gap-3">
+                <div
+                  class="avatar avatar-xl bg-white text-primary border border-3 border-white shadow-sm position-relative">
+                  <i class="bi bi-person-fill fs-1"></i>
+                  <span class="avatar-status bg-success" style="width: 14px; height: 14px;"></span>
+                </div>
+                <div>
+                  <h4 class="fw-bold mb-1">Michael De Santa</h4>
+                  <div class="opacity-75 small">Lead Product Designer & Frontend Architect</div>
+                  <div class="small mt-1 opacity-75">
+                    <i class="bi bi-geo-alt me-1"></i> Los Santos, US &nbsp;•&nbsp;
+                    <i class="bi bi-calendar3 me-1"></i> Joined March 2021
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-light btn-sm fw-semibold shadow-sm">
+                  <i class="bi bi-pencil-square me-1"></i> Edit Profile
+                </button>
+                <button class="btn btn-outline-light btn-sm">
+                  <i class="bi bi-share me-1"></i> Share
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile Nav Tabs Bar -->
+          <div class="profile-tabs-wrapper">
+            <ul class="nav nav-tabs" id="profileTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview-pane"
+                  type="button" role="tab">
+                  <i class="bi bi-info-circle"></i> <span>Overview</span>
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="edit-tab" data-bs-toggle="tab" data-bs-target="#edit-pane" type="button"
+                  role="tab">
+                  <i class="bi bi-person-lines-fill"></i> <span>Edit Profile</span>
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security-pane"
+                  type="button" role="tab">
+                  <i class="bi bi-shield-lock"></i> <span>Security & Sessions</span>
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="notif-tab" data-bs-toggle="tab" data-bs-target="#notif-pane" type="button"
+                  role="tab">
+                  <i class="bi bi-bell"></i> <span>Notification Preferences</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tab Panes Content -->
+        <div class="tab-content" id="profileTabContent">
+          <!-- TAB 1: OVERVIEW -->
+          <div class="tab-pane fade show active" id="overview-pane" role="tabpanel" tabindex="0">
+            <div class="row g-4">
+              <!-- Left Info Column -->
+              <div class="col-12 col-lg-4">
+                <div class="card mb-4">
+                  <div class="card-header"><span class="fw-semibold">Personal Information</span></div>
+                  <div class="card-body">
+                    <ul class="list-unstyled small mb-0 d-flex flex-column gap-3">
+                      <li>
+                        <div class="text-secondary">Full Name</div>
+                        <div class="fw-semibold">Michael De Santa</div>
+                      </li>
+                      <li>
+                        <div class="text-secondary">Email Address</div>
+                        <div class="fw-semibold">michael.desanta@company.io</div>
+                      </li>
+                      <li>
+                        <div class="text-secondary">Phone Number</div>
+                        <div class="fw-semibold">+1 (555) 019-2834</div>
+                      </li>
+                      <li>
+                        <div class="text-secondary">Company / Organization</div>
+                        <div class="fw-semibold">Bootstrap Design Labs Inc.</div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header"><span class="fw-semibold">Skills & Expertise</span></div>
+                  <div class="card-body">
+                    <div class="d-flex flex-wrap gap-2">
+                      <span class="badge bg-primary-subtle text-primary">Bootstrap 5</span>
+                      <span class="badge bg-primary-subtle text-primary">CSS Grid & Flexbox</span>
+                      <span class="badge bg-primary-subtle text-primary">Mobile UX</span>
+                      <span class="badge bg-primary-subtle text-primary">Vanilla JS</span>
+                      <span class="badge bg-primary-subtle text-primary">Chart.js</span>
+                      <span class="badge bg-primary-subtle text-primary">Figma Architecture</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right About & Activity Column -->
+              <div class="col-12 col-lg-8">
+                <div class="card mb-4">
+                  <div class="card-header"><span class="fw-semibold">Biography</span></div>
+                  <div class="card-body">
+                    <p class="text-secondary">
+                      Senior Product Designer and Frontend Engineer with over 9 years of experience crafting
+                      enterprise-grade design systems, responsive web interfaces, and fluid user experiences. Passionate
+                      about clean vanilla code, accessibility (a11y), and zero-dependency component design.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header"><span class="fw-semibold">Recent Contributions</span></div>
+                  <div class="card-body">
+                    <ul class="timeline">
+                      <li class="timeline-item">
+                        <div class="timeline-badge bg-primary"></div>
+                        <div class="fw-semibold small">Refactored Admin Panel Layout</div>
+                        <p class="text-secondary small mb-1">Optimized sidebar collapsible transitions and integrated
+                          mobile offcanvas drawer.</p>
+                        <span class="text-muted small">Yesterday at 15:40</span>
+                      </li>
+                      <li class="timeline-item">
+                        <div class="timeline-badge bg-success"></div>
+                        <div class="fw-semibold small">Updated DataTables CDN Bundle</div>
+                        <p class="text-secondary small mb-1">Migrated to DataTables 2.1 BS5 styling for enhanced
+                          pagination controls.</p>
+                        <span class="text-muted small">3 days ago</span>
+                      </li>
+                      <li class="timeline-item">
+                        <div class="timeline-badge bg-info"></div>
+                        <div class="fw-semibold small">Released Theme Switcher Feature</div>
+                        <p class="text-secondary small mb-1">Added 3-mode auto theme switcher supporting OS
+                          prefers-color-scheme.</p>
+                        <span class="text-muted small">Last week</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: EDIT PROFILE -->
+          <div class="tab-pane fade" id="edit-pane" role="tabpanel" tabindex="0">
+            <div class="card">
+              <div class="card-header"><span class="fw-semibold">Account Information</span></div>
+              <div class="card-body">
+                <form>
+                  <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold">First Name</label>
+                      <input type="text" class="form-control" value="Michael">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold">Last Name</label>
+                      <input type="text" class="form-control" value="De Santa">
+                    </div>
+                  </div>
+
+                  <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold">Email Address</label>
+                      <input type="email" class="form-control" value="michael.desanta@company.io">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold">Phone Number</label>
+                      <input type="tel" class="form-control" value="+1 (555) 019-2834">
+                    </div>
+                  </div>
+
+                  <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold">Job Title</label>
+                      <input type="text" class="form-control" value="Lead Product Designer">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label small fw-semibold">Location / Country</label>
+                      <input type="text" class="form-control" value="Los Santos, United States">
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="form-label small fw-semibold">Bio</label>
+                    <textarea class="form-control"
+                      rows="4">Senior Product Designer and Frontend Engineer with over 9 years of experience crafting enterprise-grade design systems.</textarea>
+                  </div>
+
+                  <div class="d-flex justify-content-end gap-2">
+                    <button type="button" class="btn btn-outline-secondary btn-sm">Discard</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Save Profile Changes</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: SECURITY & SESSIONS -->
+          <div class="tab-pane fade" id="security-pane" role="tabpanel" tabindex="0">
+            <!-- Password Change -->
+            <div class="card mb-4">
+              <div class="card-header"><span class="fw-semibold">Change Password</span></div>
+              <div class="card-body">
+                <form>
+                  <div class="mb-3 col-md-6">
+                    <label class="form-label small fw-semibold">Current Password</label>
+                    <input type="password" class="form-control" placeholder="••••••••••••">
+                  </div>
+                  <div class="mb-3 col-md-6">
+                    <label class="form-label small fw-semibold">New Password</label>
+                    <input type="password" class="form-control" placeholder="••••••••••••">
+                    <div class="form-text">Must be at least 8 characters long with uppercase and numbers.</div>
+                  </div>
+                  <div class="mb-3 col-md-6">
+                    <label class="form-label small fw-semibold">Confirm New Password</label>
+                    <input type="password" class="form-control" placeholder="••••••••••••">
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-sm">Update Password</button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Two Factor Auth -->
+            <div class="card mb-4">
+              <div class="card-header"><span class="fw-semibold">Two-Factor Authentication (2FA)</span></div>
+              <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                  <h6 class="fw-bold mb-1">Authenticator App Verification</h6>
+                  <p class="text-secondary small mb-0">Protect your account using an authenticator app (Google
+                    Authenticator, Authy).</p>
+                </div>
+                <div class="form-check form-switch fs-5">
+                  <input class="form-check-input" type="checkbox" role="switch" checked>
+                </div>
+              </div>
+            </div>
+
+            <!-- Active Sessions -->
+            <div class="card">
+              <div class="card-header"><span class="fw-semibold">Active Login Sessions</span></div>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table align-middle mb-0">
+                    <thead class="table-light">
+                      <tr>
+                        <th class="ps-3">Device / Browser</th>
+                        <th>Location</th>
+                        <th>IP Address</th>
+                        <th>Last Active</th>
+                        <th class="text-end pe-3">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="ps-3">
+                          <i class="bi bi-laptop me-2 text-primary"></i>
+                          <span class="fw-semibold">MacBook Pro (Chrome 122)</span>
+                          <span class="badge bg-success-subtle text-success ms-2">Current</span>
+                        </td>
+                        <td>Los Santos, US</td>
+                        <td>192.168.1.45</td>
+                        <td>Just now</td>
+                        <td class="text-end pe-3">
+                          <button class="btn btn-sm btn-outline-secondary disabled">Current</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="ps-3">
+                          <i class="bi bi-phone me-2 text-secondary"></i>
+                          <span class="fw-semibold">iPhone 15 (Safari Mobile)</span>
+                        </td>
+                        <td>Los Santos, US</td>
+                        <td>172.56.21.90</td>
+                        <td>2 hours ago</td>
+                        <td class="text-end pe-3">
+                          <button class="btn btn-sm btn-outline-danger">Log Out</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: NOTIFICATIONS -->
+          <div class="tab-pane fade" id="notif-pane" role="tabpanel" tabindex="0">
+            <div class="card">
+              <div class="card-header"><span class="fw-semibold">Notification Preferences</span></div>
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                  <div>
+                    <div class="fw-semibold">Security Alerts</div>
+                    <div class="text-secondary small">Get notified of unauthorized login attempts and password resets.
+                    </div>
+                  </div>
+                  <div class="form-check form-switch fs-5">
+                    <input class="form-check-input" type="checkbox" role="switch" checked>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                  <div>
+                    <div class="fw-semibold">Weekly Analytics Digest</div>
+                    <div class="text-secondary small">Receive a summary of traffic, sales, and system uptime every
+                      Monday.</div>
+                  </div>
+                  <div class="form-check form-switch fs-5">
+                    <input class="form-check-input" type="checkbox" role="switch" checked>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                  <div>
+                    <div class="fw-semibold">New Team Member Invitations</div>
+                    <div class="text-secondary small">Notifications when team invitations are sent or accepted.</div>
+                  </div>
+                  <div class="form-check form-switch fs-5">
+                    <input class="form-check-input" type="checkbox" role="switch">
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center py-2">
+                  <div>
+                    <div class="fw-semibold">Marketing & Product Updates</div>
+                    <div class="text-secondary small">Stay informed about new template releases and platform updates.
+                    </div>
+                  </div>
+                  <div class="form-check form-switch fs-5">
+                    <input class="form-check-input" type="checkbox" role="switch">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="app-footer justify-content-between">
+        <div>&copy; 2026 <strong>Vantura BS5</strong>. All rights reserved.</div>
+        <div class="d-none d-sm-flex gap-3">
+          <a href="#" class="text-secondary text-decoration-none">Documentation</a>
+          <a href="#" class="text-secondary text-decoration-none">Support</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>
